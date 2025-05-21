@@ -1,6 +1,13 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+
+// Set up color mode config - use system preference by default
+const config: ThemeConfig = {
+  initialColorMode: 'system',
+  useSystemColorMode: true,
+}
 
 const theme = extendTheme({
+  config,
   colors: {
     primary: {
       50: '#e6e6ff',
@@ -74,12 +81,36 @@ const theme = extendTheme({
     }
   },
   styles: {
-    global: {
-      body: {
-        bg: 'gray.50',
-        color: 'gray.800'
-      }
-    }
+    global: (props: any) => ({
+      'html, body': {
+        height: '100%',
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        // Use different background colors based on color mode
+        bg: props.colorMode === 'dark' ? 'gray.900' : 'white',
+        color: props.colorMode === 'dark' ? 'white' : 'gray.800',
+      },
+      '#root': {
+        minHeight: '100vh',
+        bg: props.colorMode === 'dark' ? 'gray.900' : 'white',
+      },
+      // Scrollbar styling for better dark mode
+      '::-webkit-scrollbar': {
+        width: '8px',
+        height: '8px',
+      },
+      '::-webkit-scrollbar-track': {
+        bg: props.colorMode === 'dark' ? 'gray.700' : 'gray.100',
+      },
+      '::-webkit-scrollbar-thumb': {
+        bg: props.colorMode === 'dark' ? 'gray.500' : 'gray.400',
+        borderRadius: '8px',
+      },
+      '::-webkit-scrollbar-thumb:hover': {
+        bg: props.colorMode === 'dark' ? 'gray.400' : 'gray.500',
+      },
+    })
   }
 })
 

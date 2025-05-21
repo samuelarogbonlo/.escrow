@@ -30,7 +30,22 @@ type Config struct {
 	JWTExpiration time.Duration
 
 	// Polkadot
-	PolkadotRPCURL string
+	PolkadotRPCURL      string
+	PolkadotKeypairSeed string
+	PolkadotNetworkID   uint8
+
+	// Contract
+	EscrowContractAddress     string
+	EscrowContractConstructor string
+
+	// Logging
+	LogLevel  string
+	LogFormat string
+
+	// Feature Flags
+	EnableCaching    bool
+	MaxCacheSizeMB   int
+	CacheTTLSeconds  int
 }
 
 // Load loads configuration from environment variables
@@ -58,7 +73,22 @@ func Load() (*Config, error) {
 		JWTExpiration: getEnvAsDuration("JWT_EXPIRATION", 24*time.Hour),
 
 		// Polkadot
-		PolkadotRPCURL: getEnv("POLKADOT_RPC_URL", "wss://rpc.polkadot.io"),
+		PolkadotRPCURL:      getEnv("POLKADOT_RPC_URL", "wss://rpc.polkadot.io"),
+		PolkadotKeypairSeed: getEnv("POLKADOT_KEYPAIR_SEED", "//Alice"),
+		PolkadotNetworkID:   uint8(getEnvAsInt("POLKADOT_NETWORK_ID", 42)),
+
+		// Contract
+		EscrowContractAddress:     getEnv("ESCROW_CONTRACT_ADDRESS", "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"),
+		EscrowContractConstructor: getEnv("ESCROW_CONTRACT_CONSTRUCTOR", "new"),
+
+		// Logging
+		LogLevel:  getEnv("LOG_LEVEL", "info"),
+		LogFormat: getEnv("LOG_FORMAT", "json"),
+
+		// Feature Flags
+		EnableCaching:    getEnvAsBool("ENABLE_CACHING", false),
+		MaxCacheSizeMB:   getEnvAsInt("MAX_CACHE_SIZE_MB", 100),
+		CacheTTLSeconds:  getEnvAsInt("CACHE_TTL_SECONDS", 300),
 	}
 
 	// Validate critical configuration
@@ -98,6 +128,19 @@ func getEnvAsDuration(key string, defaultValue time.Duration) time.Duration {
 		return defaultValue
 	}
 	value, err := time.ParseDuration(valueStr)
+	if err != nil {
+		return defaultValue
+	}
+	return value
+}
+
+// getEnvAsBool gets an environment variable as a boolean or returns a default value if not set
+func getEnvAsBool(key string, defaultValue bool) bool {
+	valueStr := getEnv(key, "")
+	if valueStr == "" {
+		return defaultValue
+	}
+	value, err := strconv.ParseBool(valueStr)
 	if err != nil {
 		return defaultValue
 	}

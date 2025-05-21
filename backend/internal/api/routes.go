@@ -31,6 +31,20 @@ func RegisterRoutes(r *gin.Engine) {
 			auth.POST("/escrows/:id/milestones", CreateMilestone)
 			auth.PUT("/escrows/:id/milestones/:milestoneId", UpdateMilestone)
 			
+			// Milestone evidence routes
+			auth.POST("/escrows/:id/milestones/:milestoneId/evidence", AddMilestoneEvidence)
+			
+			// Milestone confirmation routes
+			auth.POST("/escrows/:id/milestones/:milestoneId/confirm", ConfirmMilestoneCompletion)
+			
+			// Milestone modification routes
+			auth.POST("/escrows/:id/milestones/:milestoneId/request-modification", RequestMilestoneModification)
+			auth.POST("/escrows/:id/milestones/:milestoneId/approve-modification", ApproveMilestoneModification)
+			
+			// Release condition routes
+			auth.POST("/escrows/:id/milestones/:milestoneId/conditions", AddReleaseCondition)
+			auth.POST("/escrows/:id/milestones/:milestoneId/conditions/:conditionId/verify", VerifyReleaseCondition)
+			
 			// Transaction routes
 			auth.POST("/escrows/:id/release", ReleaseEscrow)
 			auth.POST("/escrows/:id/cancel", CancelEscrow)

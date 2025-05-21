@@ -4,19 +4,18 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
+html, 
+body, 
+#root {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
   margin: 0;
+  padding: 0;
 }
 
 html:focus-within {
@@ -27,6 +26,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -45,4 +45,11 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+/* Ensure dark mode background extends to entire viewport */
+html.dark-mode,
+body.dark-mode,
+#root {
+  background-color: #1A202C; /* This is the Chakra UI gray.900 color */
 } 

@@ -34,6 +34,7 @@ func Initialize(cfg *config.Config) error {
 	err = DB.AutoMigrate(
 		&models.Escrow{},
 		&models.Milestone{},
+		&models.ReleaseCondition{},
 		&models.Dispute{},
 		&models.DisputeMessage{},
 	)

@@ -7,13 +7,16 @@ import App from './App'
 import { store } from './store'
 import theme from './styles/theme'
 import './styles/index.css'
+import { WalletProvider } from './hooks/useWalletContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
-          <App />
+          <WalletProvider>
+            <App />
+          </WalletProvider>
         </BrowserRouter>
       </ChakraProvider>
     </Provider>

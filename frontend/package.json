@@ -12,19 +12,26 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@polkadot/api": "^10.9.1",
-    "@polkadot/extension-dapp": "^0.46.5",
+    "@polkadot/api": "^10.13.1",
+    "@polkadot/extension-dapp": "^0.46.9",
+    "@polkadot/keyring": "^13.4.4",
+    "@polkadot/util": "^13.4.4",
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.9.0",
+    "chakra-dayzed-datepicker": "^0.3.0",
+    "dayzed": "^3.2.3",
     "framer-motion": "^10.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-i18next": "^13.1.2",
+    "react-icons": "^5.5.0",
     "react-redux": "^8.1.2",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.30.0",
     "recharts": "^2.8.0",
     "zod": "^3.22.2"
   },
@@ -45,4 +52,4 @@
     "vite": "^4.4.9",
     "vitest": "^0.34.2"
   }
-} 
+}

@@ -3,7 +3,7 @@ import { ApiPromise } from '@polkadot/api'
 import { InjectedExtension } from '@polkadot/extension-inject/types'
 
 interface WalletState {
-  connected: boolean
+  isConnected: boolean
   address: string | null
   balance: string | null
   api: ApiPromise | null
@@ -13,7 +13,7 @@ interface WalletState {
 }
 
 const initialState: WalletState = {
-  connected: false,
+  isConnected: false,
   address: null,
   balance: null,
   api: null,
@@ -31,18 +31,18 @@ export const walletSlice = createSlice({
       state.error = null
     },
     connectWalletSuccess: (state, action: PayloadAction<{ address: string; balance: string }>) => {
-      state.connected = true
+      state.isConnected = true
       state.address = action.payload.address
       state.balance = action.payload.balance
       state.isConnecting = false
     },
     connectWalletFailure: (state, action: PayloadAction<string>) => {
-      state.connected = false
+      state.isConnected = false
       state.isConnecting = false
       state.error = action.payload
     },
     disconnectWallet: (state) => {
-      state.connected = false
+      state.isConnected = false
       state.address = null
       state.balance = null
       state.api = null
