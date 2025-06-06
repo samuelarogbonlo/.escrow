@@ -1,5 +1,5 @@
 [package]
-name = "escrow_contract"
+name = "mock_usdt"
 version = "0.1.0"
 authors = ["Samuel Arogbonlo <sbayo971@gmail.com>"]
 edition = "2021"
@@ -20,4 +20,4 @@ std = [
     "scale/std",
     "scale-info/std",
 ]
-ink-as-dependency = []
+ink-as-dependency = [] 
