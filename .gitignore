@@ -61,4 +61,4 @@ Cargo.lock
 # Others
 .tmp/
 .cache/
-.history/ 
+.history/ .cursor/
