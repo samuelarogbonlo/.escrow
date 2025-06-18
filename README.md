@@ -8,7 +8,7 @@ A secure, transparent, and efficient escrow platform built on Polkadot for the g
 
 ## 🌟 **Overview**
 
-.escrow is a trustless escrow solution that enables secure transactions between freelancers and clients without requiring intermediaries. Built using ink! smart contracts on Polkadot, it provides transparent, automated escrow services with minimal fees.
+.escrow is a trustless escrow solution that enables secure transactions between freelancers and clients, eliminating the need for intermediaries. Built using ink! Smart contracts on Polkadot provide transparent, automated escrow services with minimal fees.
 
 ## 🚀 Key Features
 
@@ -94,42 +94,14 @@ cargo contract build
 
 Compiled contract: `target/ink/escrow_contract.wasm`
 
-### 4️⃣ **Deploy Contract**
 
-See [Deployment Guide](./docs/DEPLOYMENT_GUIDE.md) for detailed instructions.
-
-### 5️⃣ **Connect & Test**
+### 4️⃣ **Connect & Test**
 
 1. Install Polkadot.js extension
 2. Create/import account on Westend testnet
 3. Get testnet tokens from faucet
 4. Connect wallet to application
 5. Create your first escrow!
-
-## 📁 **Project Structure**
-
-```
-escrow/
-├── 📁 contracts/           # Smart contracts
-│   ├── 📁 escrow/         # Main escrow contract
-│   │   ├── src/lib.rs     # Contract implementation
-│   │   ├── Cargo.toml     # Dependencies
-│   │   └── target/        # Compiled outputs
-│   └── 📁 lib/           # Shared libraries
-├── 📁 frontend/           # React application
-│   ├── 📁 src/
-│   │   ├── 📁 components/ # UI components  
-│   │   ├── 📁 hooks/      # Contract integration
-│   │   ├── 📁 config/     # Network & contract config
-│   │   └── 📁 types/      # TypeScript definitions
-│   ├── package.json      # Dependencies
-│   └── public/           # Static assets
-├── 📁 docs/              # Documentation
-│   ├── API_REFERENCE.md  # Contract API docs
-│   ├── DEPLOYMENT_GUIDE.md # Deployment instructions
-│   └── PLATFORM_ARTICLE.md # Technical article
-└── README.md             # This file
-```
 
 ## 🔧 **Development**
 
@@ -283,16 +255,9 @@ See [API Reference](./docs/API_REFERENCE.md) for complete documentation.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 **Links**
-
-- **Demo**: [https://escrow-demo.polkadot.network](https://escrow-demo.polkadot.network)
-- **Documentation**: [https://docs.escrow.polkadot.network](https://docs.escrow.polkadot.network)
-- **Discord**: [https://discord.gg/polkadot-escrow](https://discord.gg/polkadot-escrow)
-- **Twitter**: [@PolkadotEscrow](https://twitter.com/PolkadotEscrow)
-
 ## 👨‍💻 **Authors**
 
-- **Samuel Arogbonlo** - *Initial work* - [@sbayo971](https://github.com/sbayo971)
+- **Samuel Arogbonlo** - *Initial work* 
 
 ## 🙏 **Acknowledgments**
 
