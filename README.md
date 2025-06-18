@@ -150,11 +150,11 @@ npm install
 #### **Running Tests**
 
 ```bash
-# Contract tests (37 comprehensive tests including end-to-end workflow)
+# Contract tests (38 comprehensive tests including end-to-end workflow)
 cd contracts/escrow
 cargo test
 
-# Frontend tests (requires vitest)
+# Frontend tests (35 tests all passing - requires vitest)
 cd frontend
 npm test
 
@@ -201,11 +201,10 @@ npm run build
 
 | Network | Status | Contract Address | USDT Support |
 |---------|--------|------------------|--------------|
-| **Westend Asset Hub** | 🚧 Ready to Deploy | TBA | ✅ Runtime USDT (Asset ID 1984) |
+| **Westend Asset Hub** | 🚧 Ready to Deploy | TBA | ✅ Runtime USDT (Asset ID 2022) |
 | **Polkadot Asset Hub** | 🔮 Future | TBA | ✅ Runtime USDT (Asset ID 1984) |
 | **Aleph Zero Testnet** | ✅ Active | `5GvRMZSLS6UzHwExFuw5Fw9Ybic1gRdWH9LFy79ssDbDiWvU` | ✅ PSP22 USDT |
-| **Westend Testnet** | ✅ Backup | `5GvRMZSLS6UzHwExFuw5Fw9Ybic1gRdWH9LFy79ssDbDiWvU` | ❌ No USDT |
-| **Paseo Testnet** | 🚧 Planned | TBA | ❌ No USDT |
+| **Paseo Testnet** | ✅ Updated | TBA | ❌ No USDT (official Polkadot testnet) |
 
 ## 📋 **Smart Contract API**
 
@@ -233,7 +232,7 @@ See [API Reference](./docs/API_REFERENCE.md) for complete documentation.
 - ✅ **Access Controls** - Role-based permissions  
 - ✅ **Input Validation** - Comprehensive checks
 - ✅ **Emergency Controls** - Pause/unpause functionality
-- ✅ **Comprehensive Testing** - 14+ unit tests
+- ✅ **Comprehensive Testing** - 38 unit tests + end-to-end workflow test
 - ✅ **Code Auditing** - Peer-reviewed implementation
 
 ## 🤝 **Contributing**
@@ -260,17 +259,19 @@ See [API Reference](./docs/API_REFERENCE.md) for complete documentation.
 
 ## 🎉 **Roadmap**
 
-### **Milestone 1** ✅ (Current)
-- Core escrow functionality
-- USDT integration
-- Basic UI
-- Testnet deployment
+### **Milestone 1** ✅ (Complete)
+- Core escrow functionality with tiered pricing
+- USDT integration (PSP22 + Asset Hub ready)
+- Basic UI with 35 passing tests
+- Testnet deployment on Aleph Zero
+- Security fixes and comprehensive testing
+- Dispute resolution and deadline extensions
 
 ### **Milestone 2** 🚧 (In Progress)  
-- Advanced UI features
-- Multi-milestone escrows
-- Dispute resolution
-- Mobile optimization
+- Advanced UI features and real-time updates
+- Enhanced USDT integration with approval flows
+- Mobile optimization and accessibility
+- Analytics dashboard and user insights
 
 ### **Milestone 3** 🔮 (Planned)
 - Governance features
@@ -335,9 +336,24 @@ pub fn get_volume_to_next_tier(&self) -> Balance; // $ until next tier
 - `complete_escrow(escrow_id)` - Release funds to provider (client only)
 - `cancel_escrow(escrow_id)` - Return funds to client (both parties)
 - `process_expired_escrow(escrow_id)` - Handle expired escrows (30-day timelock)
+- `flag_dispute(escrow_id, reason)` - Flag escrow for dispute resolution
+- `request_deadline_extension(escrow_id, new_deadline, reason)` - Request deadline extension
+- `approve_deadline_extension(escrow_id)` - Approve pending extension request
+
+### Comprehensive Testing
+The contract includes a complete end-to-end test (`comprehensive_usdt_integration_test`) that validates:
+- USDT integration with 6-decimal precision 
+- Asset Hub runtime asset support (Asset ID 1984/2022)
+- PSP22 token contract compatibility
+- Fee calculations across all pricing tiers
+- Complete escrow workflow (create → complete → cancel)
 
 ### Security Features
 - **Timelock Protection**: 30-day default expiration with customizable duration
+- **Dispute Resolution**: Built-in dispute flagging and resolution workflow
+- **Deadline Extensions**: Mutual consent deadline extension capability
 - **Multi-signature Ready**: Owner controls for emergency situations
 - **Pause Functionality**: Emergency stop mechanism
-- **Comprehensive Events**: Full audit trail for all transactions 
+- **Allowance Security**: Fixed allowance reset vulnerability
+- **Comprehensive Events**: Full audit trail for all transactions
+- **PVM-Ready Architecture**: Future-proof for runtime API integration 
