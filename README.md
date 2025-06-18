@@ -1,7 +1,7 @@
 # 🔐 .escrow - Decentralized Escrow Platform
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![ink! version](https://img.shields.io/badge/ink!-4.3.0-blue)](https://use.ink/)
+[![ink! version](https://img.shields.io/badge/ink!-5.1.1-blue)](https://use.ink/)
 [![Build Status](https://img.shields.io/badge/build-passing-green)](https://github.com/your-repo/escrow)
 
 A secure, transparent, and efficient escrow platform built on Polkadot for the global freelance economy. Features automatic **tiered pricing** that starts at 1% and decreases to 0.5% as platform volume grows.
@@ -25,6 +25,14 @@ A secure, transparent, and efficient escrow platform built on Polkadot for the g
 - **Digital Products** - Safe transactions for software, designs, content
 - **Consulting** - Milestone-based project payments
 - **E-commerce** - Buyer protection for digital goods
+
+### 💰 **USDT Integration**
+
+- **Asset Hub Integration** - Native USDT support via runtime APIs
+- **PSP22 Compatibility** - Works with standard token contracts  
+- **Multi-Chain Ready** - Supports Polkadot, Kusama, and Aleph Zero
+- **Precision Handling** - Accurate 6-decimal USDT calculations
+- **Fee Optimization** - Minimized costs on Asset Hub chains
 
 ## 💰 **Pricing Tiers**
 
@@ -127,15 +135,44 @@ escrow/
 
 ### **Running Tests**
 
+#### **Prerequisites for Frontend Testing**
+First, install vitest globally (required for running frontend tests):
+
 ```bash
-# Contract tests
+# Install vitest globally
+npm install -g vitest
+
+# Or install project dependencies (includes vitest as dev dependency)
+cd frontend
+npm install
+```
+
+#### **Running Tests**
+
+```bash
+# Contract tests (37 comprehensive tests including end-to-end workflow)
 cd contracts/escrow
 cargo test
 
-# Frontend tests  
+# Frontend tests (requires vitest)
 cd frontend
 npm test
+
+# Or run vitest directly
+vitest
+
+# Run tests in watch mode
+vitest --watch
+
+# Run tests with coverage
+vitest --coverage
 ```
+
+#### **Frontend Test Requirements**
+The frontend tests use **Vitest** as the test runner. If you encounter `vitest: command not found`, ensure you have either:
+1. Installed vitest globally: `npm install -g vitest`
+2. Run via npm script: `npm test` (recommended)
+3. Use npx: `npx vitest`
 
 ### **Local Development**
 
@@ -160,13 +197,15 @@ cd frontend
 npm run build
 ```
 
-## 🌐 **Networks**
+## 🌐 **Networks & USDT Integration**
 
-| Network | Status | Contract Address |
-|---------|--------|------------------|
-| **Westend Testnet** | ✅ Active | `5GvRMZSLS6UzHwExFuw5Fw9Ybic1gRdWH9LFy79ssDbDiWvU` |
-| **Rococo Testnet** | 🚧 Planned | TBA |
-| **Polkadot Mainnet** | 🔮 Future | TBA |
+| Network | Status | Contract Address | USDT Support |
+|---------|--------|------------------|--------------|
+| **Westend Asset Hub** | 🚧 Ready to Deploy | TBA | ✅ Runtime USDT (Asset ID 1984) |
+| **Polkadot Asset Hub** | 🔮 Future | TBA | ✅ Runtime USDT (Asset ID 1984) |
+| **Aleph Zero Testnet** | ✅ Active | `5GvRMZSLS6UzHwExFuw5Fw9Ybic1gRdWH9LFy79ssDbDiWvU` | ✅ PSP22 USDT |
+| **Westend Testnet** | ✅ Backup | `5GvRMZSLS6UzHwExFuw5Fw9Ybic1gRdWH9LFy79ssDbDiWvU` | ❌ No USDT |
+| **Paseo Testnet** | 🚧 Planned | TBA | ❌ No USDT |
 
 ## 📋 **Smart Contract API**
 

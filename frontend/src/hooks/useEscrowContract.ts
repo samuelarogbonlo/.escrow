@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { ApiPromise } from '@polkadot/api';
 import { ContractPromise } from '@polkadot/api-contract';
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
-import type { Signer } from '@polkadot/api/types';
 import { BN } from '@polkadot/util';
 import { CONTRACT_CONFIG, GAS_LIMITS } from '../config/contract';
 
@@ -97,12 +96,12 @@ export const useEscrowContract = ({ api, account, getSigner }: UseEscrowContract
   const createEscrow = useCallback(async (
     userAddress: string,
     counterpartyAddress: string,
-    counterpartyType: string,
-    status: string,
-    title: string,
-    description: string,
+    _counterpartyType: string,
+    _status: string,
+    _title: string,
+    _description: string,
     totalAmount: string,
-    milestones: { id: string, description: string, amount: string, status: string, deadline: number }[]
+    _milestones: { id: string, description: string, amount: string, status: string, deadline: number }[]
   ) => {
     console.log('[EscrowContract] createEscrow called with:', {
       userAddress,
@@ -145,7 +144,7 @@ export const useEscrowContract = ({ api, account, getSigner }: UseEscrowContract
 
       // First, do a dry run to estimate gas
       try {
-        const { gasRequired, result, output } = await contract.query.createEscrow(
+        const { gasRequired, result } = await contract.query.createEscrow(
           account.address,
           {
             gasLimit,

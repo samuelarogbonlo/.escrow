@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const Layout = () => {
   const bgColor = useColorModeValue('white', 'gray.900');
-  const [showMenu, setShowMenu] = useState(false);
+  const [, setShowMenu] = useState(false);
 
   
   

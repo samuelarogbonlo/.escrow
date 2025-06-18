@@ -25,7 +25,6 @@ import {
 } from '@chakra-ui/react';
 import {
   FiSearch,
-  FiFilter,
   FiChevronDown,
   FiChevronUp,
   FiCalendar,
@@ -59,7 +58,7 @@ interface SearchFiltersProps {
 const AMOUNT_RANGES = [0, 500, 1000, 2500, 5000, 10000];
 const DATE_RANGES = [7, 30, 90, 180, 365];
 
-const SearchFilters = ({
+const SearchFilters: React.FC<SearchFiltersProps> = ({
   filters,
   onFilterChange,
   onSearch,

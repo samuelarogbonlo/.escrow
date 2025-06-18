@@ -7,15 +7,18 @@ const ENDPOINTS = {
   LOCAL: 'ws://127.0.0.1:9944',
   // Public Polkadot testnet nodes
   WESTEND: 'wss://westend-rpc.polkadot.io',
-  ROCOCO: 'wss://rococo-rpc.polkadot.io',
+  PASEO: 'wss://paseo-rpc.polkadot.io',
+  // Asset Hub endpoints
+  WESTEND_ASSET_HUB: 'wss://westend-asset-hub-rpc.polkadot.io',
+  POLKADOT_ASSET_HUB: 'wss://polkadot-asset-hub-rpc.polkadot.io',
   // For testing, use public Polkadot node
   PUBLIC: 'wss://rpc.polkadot.io',
-  // Auto will first try local, then fall back to public
+  // Auto will first try local, then fall back to Westend Asset Hub
   AUTO: 'auto'
 };
 
-// Default to testing with Westend testnet
-const DEFAULT_ENDPOINT = ENDPOINTS.WESTEND;
+// Default to Westend Asset Hub for USDT integration
+const DEFAULT_ENDPOINT = ENDPOINTS.WESTEND_ASSET_HUB;
 
 export interface PolkadotApiStatus {
   api: ApiPromise | null;
@@ -81,9 +84,9 @@ export const usePolkadotApi = (endpoint: string = DEFAULT_ENDPOINT) => {
       return ENDPOINTS.LOCAL;
     }
     
-    // Fall back to Westend testnet
-    debugLog('Local endpoint not available, using Westend testnet');
-    return ENDPOINTS.WESTEND;
+    // Fall back to Westend Asset Hub for USDT support
+    debugLog('Local endpoint not available, using Westend Asset Hub');
+    return ENDPOINTS.WESTEND_ASSET_HUB;
   };
 
   // Connect to the API

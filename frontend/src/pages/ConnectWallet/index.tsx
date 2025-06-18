@@ -335,11 +335,17 @@ const ConnectWallet = () => {
                   <Text fontSize="sm" fontWeight="medium" mb={2}>Select Network:</Text>
                   <RadioGroup onChange={handleEndpointChange} value={selectedEndpoint}>
                     <Stack direction="column" spacing={2}>
+                      <Radio value={endpoints?.WESTEND_ASSET_HUB || 'wss://westend-asset-hub-rpc.polkadot.io'}>
+                        Westend Asset Hub (USDT)
+                      </Radio>
                       <Radio value={endpoints?.WESTEND || 'wss://westend-rpc.polkadot.io'}>
                         Westend Testnet
                       </Radio>
-                      <Radio value={endpoints?.ROCOCO || 'wss://rococo-rpc.polkadot.io'}>
-                        Rococo Testnet
+                      <Radio value={endpoints?.PASEO || 'wss://paseo-rpc.polkadot.io'}>
+                        Paseo Testnet
+                      </Radio>
+                      <Radio value={endpoints?.POLKADOT_ASSET_HUB || 'wss://polkadot-asset-hub-rpc.polkadot.io'}>
+                        Polkadot Asset Hub (Mainnet)
                       </Radio>
                       <Radio value={endpoints?.LOCAL || 'ws://127.0.0.1:9944'}>
                         Local Node
