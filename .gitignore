@@ -61,4 +61,8 @@ Cargo.lock
 # Others
 .tmp/
 .cache/
-.history/ .cursor/
+.history/ 
+.cursor/
+
+# Screenshots (temporary)
+Screenshot*.png

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,7 +10,6 @@ import {
   List,
   ListItem,
   ListIcon,
-  Image,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -20,11 +19,8 @@ import {
   ModalCloseButton,
   Step,
   StepDescription,
-  StepIcon,
   StepIndicator,
-  StepNumber,
   StepSeparator,
-  StepStatus,
   StepTitle,
   Stepper,
   useSteps,
@@ -447,9 +443,9 @@ const WelcomeGuide = ({ isOpen: propIsOpen, onClose: propOnClose }: WelcomeGuide
                       bg={index < activeStep ? 'green.500' : index === activeStep ? currentStepBg : stepBg}
                     >
                       {index < activeStep ? (
-                        <StepIcon as={FiCheck} />
+                        <FiCheck />
                       ) : (
-                        <StepIcon as={step.icon} />
+                        <step.icon />
                       )}
                     </StepIndicator>
                     <Box flexShrink="0">

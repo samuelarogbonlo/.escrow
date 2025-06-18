@@ -5,7 +5,6 @@ import {
   Flex,
   Heading,
   Text,
-  VStack,
   HStack,
   IconButton,
   CloseButton,
@@ -18,8 +17,6 @@ import {
   FiArrowRight,
   FiArrowLeft,
   FiCheckCircle,
-  FiInfo,
-  FiX
 } from 'react-icons/fi';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
@@ -46,7 +43,6 @@ const OnboardingTour: React.FC<OnboardingTourProps> = ({
   onClose: propOnClose,
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const { isOpen: isControlledByHook, onClose: onCloseControlled } = useDisclosure({ 
     defaultIsOpen: true,
@@ -135,7 +131,6 @@ const OnboardingTour: React.FC<OnboardingTourProps> = ({
     const element = document.querySelector(targetSelector) as HTMLElement;
     
     if (element) {
-      setTargetElement(element);
       const position = calculatePosition(element, steps[currentStep].placement);
       setTooltipPosition(position);
       
@@ -213,11 +208,6 @@ const OnboardingTour: React.FC<OnboardingTourProps> = ({
     onClose();
   };
   
-  // Reset tour
-  const resetTour = () => {
-    setHasSeenTour(false);
-    setCurrentStep(0);
-  };
   
   if (!isOpen) return null;
   
@@ -343,4 +333,4 @@ const OnboardingTour: React.FC<OnboardingTourProps> = ({
   );
 };
 
- 
+export default OnboardingTour;

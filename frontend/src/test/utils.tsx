@@ -1,13 +1,15 @@
 import React from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
-// Create a custom renderer that includes all providers
-const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
+// Simple test wrapper with minimal providers
+const TestWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <ChakraProvider>
-      <BrowserRouter>{children}</BrowserRouter>
+      <MemoryRouter>
+        {children}
+      </MemoryRouter>
     </ChakraProvider>
   );
 };
@@ -16,12 +18,10 @@ export function renderWithProviders(
   ui: React.ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>
 ) {
-  return {
-    ...render(ui, { wrapper: AllTheProviders, ...options }),
-  };
+  return render(ui, { wrapper: TestWrapper, ...options });
 }
 
-// Test data generators for common test scenarios
+// Simple test data generators
 export const generateMockUser = () => ({
   id: '123',
   name: 'Test User',
@@ -62,4 +62,4 @@ export const generateMockEscrow = (id = '1') => ({
       deadline: new Date().toISOString(),
     },
   ],
-}); 
+});

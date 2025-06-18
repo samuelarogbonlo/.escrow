@@ -53,11 +53,11 @@ const SearchBar = () => {
       // Mock quick search results
       // In a real app, this would be an API call
       setTimeout(() => {
-        const mockResults: QuickSearchResult[] = [
-          { id: 'escrow-1', title: 'Website Development', type: 'escrow', status: 'active' },
-          { id: 'escrow-2', title: 'Logo Design', type: 'escrow', status: 'completed' },
-          { id: 'milestone-1', title: 'Homepage Design', type: 'milestone', status: 'pending' },
-          { id: 'transaction-1', title: 'Payment for Homepage', type: 'transaction', status: 'completed' },
+        const mockResults = [
+          { id: 'escrow-1', title: 'Website Development', type: 'escrow' as const, status: 'active' },
+          { id: 'escrow-2', title: 'Logo Design', type: 'escrow' as const, status: 'completed' },
+          { id: 'milestone-1', title: 'Homepage Design', type: 'milestone' as const, status: 'pending' },
+          { id: 'transaction-1', title: 'Payment for Homepage', type: 'transaction' as const, status: 'completed' },
         ].filter(result => 
           result.title.toLowerCase().includes(value.toLowerCase())
         ).slice(0, 4); // Limit to 4 results
